@@ -31,6 +31,6 @@ class Scraper
     end
 end
 
-        #    cocktails -< ingredients
+        #    spirits -< cocktails
 
         # ingredient_header = details.css("h2")[0].text

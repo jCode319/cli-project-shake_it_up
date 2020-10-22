@@ -1,31 +1,22 @@
 class Cocktail
 
-    attr_accessor :name
+    attr_accessor :name , :technique, :url
 
     @@all = []
 
     def self.all 
         @@all
     end
-    
-    def initialize(name)
+
+    def initialize(name, technique, url)
         @name = name
+        @spirit_class = spirit_class
+        @url = url
         @@all << self
     end
 
-    def ingredients
-        Ingredient.all.select { |drink| drink.cocktail == self }
-    end
+    
 
-    def self.find_or_create_by_name(name)
-        found_cocktail = self.all.find { |cocktail| cocktail.name == self }
-        if found_cocktail
-            found_cocktail
-        else
-            self.new(name)
-        end
-    end
-
-
+    
 
 end

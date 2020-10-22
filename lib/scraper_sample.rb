@@ -11,6 +11,15 @@ require 'pry'
     # end
         cocktails.each do |cocktail|
              cocktail_name = cocktail.css('.card__underline')[0].text.strip
+            second_url = cocktail.css('a')[0].attr('href')
+                #spiriT
+        # when checking spirit variable at this point, it should read. liquor type and type of string
+                         #spirit = spirit.find_or_create_by_name(name)
+                # spirit should now be and instance of a class
+
+                # cocktail.new(cocktail_name, description, ingredient)
+                creating new cocktail
+
         
     # def second_scrape
         second_url = cocktail.css('a')[0].attr('href')
