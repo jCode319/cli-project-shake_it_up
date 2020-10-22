@@ -1,7 +1,20 @@
-require_relative "../environment.rb"
-require 'pry'
+#require_relative "../environment.rb"
+#require 'pry'
 class CLI
 
+    def initialize
+        puts "CLI has initialized"
+    end
+    
+
+    def self.run
+        puts "CLI is running"   
+        Scraper.new.first_scrape
+    end
+
+end
+
+=begin
     def run
         puts "Hi, Welcome to the Shake-It-Up CLI Application"
         puts "The number best place to look up ingredients for your favorite cocktails."
@@ -40,3 +53,4 @@ class CLI
     end
 # binding.pry
 end
+=end

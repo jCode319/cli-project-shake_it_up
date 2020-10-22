@@ -1,9 +1,10 @@
-require_relative "../lib/environment.rb"
+require_relative "../config/environment.rb"
+puts "run file"
+#CLI.new.run
 
-CLI.new.run
-# Scraper.new.first_scrape
+CLI.new
+CLI.run
 
-# binding.pry
 
 
 

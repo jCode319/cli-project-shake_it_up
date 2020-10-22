@@ -1,3 +1,7 @@
+#require "nokogiri"
+#require "open-uri"
+#require "pry"
+
 class Scraper
 
     def initialize
@@ -7,17 +11,16 @@ class Scraper
     def first_scrape
         html = open(@base_url + "/cocktails-shaken-4779409") 
         parsed_cocktails = Nokogiri::HTML(html)
-        cocktail_elements = parsed_cocktails.css('.card-list')
+        cocktail_elements = parsed_cocktails.css('.card-list__item')
 
         cocktail_elements.each do |cocktail|
-            cocktail_name = cocktail.css('.card__underline')[0].text.strip
+            cocktail_name = cocktail.css('.card__content')[0].text.strip
+            technique = cocktail.css('.card__content')[0].children[1].attr('data-tax-tag')
             second_url = cocktail.css('a')[0].attr('href')
-
-            description_and_ingredients_hash = self.second_scrape(second_url)
-        
-            cocktails = Cocktail.find_or_create_by_name(cocktail_name)
-            
-            ingredient_list = Ingredient.new(cocktail_name, description_and_ingredients_hash[:description], description_and_ingredients_hash[:ingredient])
+                    binding.pry
+            technique_instance = Technique.find_or_create_by_name(technique)
+binding.pry
+            cocktail = Cocktail.new(cocktail_name, technique_instance, second_url)
         end
     end
     
@@ -31,6 +34,8 @@ class Scraper
     end
 end
 
-        #    spirits -< cocktails
 
-        # ingredient_header = details.css("h2")[0].text
+
+        #    technique -< cocktails
+
+                    # description_and_ingredients_hash = self.second_scrape(second_url)

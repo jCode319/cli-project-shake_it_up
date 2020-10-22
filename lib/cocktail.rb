@@ -10,7 +10,7 @@ class Cocktail
 
     def initialize(name, technique, url)
         @name = name
-        @spirit_class = spirit_class
+        @technique = technique
         @url = url
         @@all << self
     end
