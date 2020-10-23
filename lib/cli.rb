@@ -2,55 +2,73 @@
 #require 'pry'
 class CLI
 
-    def initialize
-        puts "CLI has initialized"
-    end
-    
+        def run 
+        #     puts "*" * 80
+        #     puts "Hi, Welcome to the Shake-It-Up CLI Application"
+        #     puts "The best place to view ingredients of your favorite cocktails!"
+        #     sleep(1)
+        #     puts "Shaking things up ...this might take a second!"
+        #     until user_input == "exit"
+        #     select_cocktail
+        #     select_more_info
+        #     what_next
+        #     end 
+        #     goodbye
+        # end
 
-    def self.run
-        puts "CLI is running"   
-        Scraper.new.first_scrape
-    end
-
-end
-
-=begin
-    def run
+        # until user_input == "exit"
+        puts "*" * 70
+        puts ""
         puts "Hi, Welcome to the Shake-It-Up CLI Application"
-        puts "The number best place to look up ingredients for your favorite cocktails."
-        sleep(1)
+        puts ""
+        puts "The best place to view ingredients of your favorite cocktails!"
+        puts ""
+        puts "*" *70
         puts "Shaking things up ...this might take a second!"
-        Scraper.new.first_scrape
-        puts "Done!"
         sleep(1)
-        puts "Which cocktail would you like to view?"
-        sleep (1)
-        puts "1. "
-        puts "2. "
-        puts "3. "
-        puts "4. "
-        puts "5. "
-        puts "6. "
-        puts "7. "
-        puts "8. "
-        puts "9. "
-        puts "10. "
-        puts "Enter a number 1-10 to view more info"
-        
-        user_input = gets.chomp
-       
-        if user_input == "1"
-        Review.print_all_reviews_to_be_selected
-        elsif
-        puts "Enter a number 1-12 to view that review:"
+        Scraper.new.first_scrape
+        puts ""
+        puts "Done!"
+        puts ""
 
-        # review_select = gets.chomp
-        # select_to_index = review_select.to_i - 1
-        # Review.all[select_to_index].print_full_review
-        # elsif user_input == "2"
-        # #write the code here to display all of the genres
+        puts "Please choose a cocktail making method?\nEnter 1 to view All Cocktails or Enter 2 to view all Shaken Cocktails\nEnter 3 to exit" 
+        puts ""
+        user_input = gets.chomp.to_i
+        instances = []
+        if user_input == 1
+            puts ""
+            Cocktail.print_all_cocktails
+            puts "to view more info and ingredients, Enter the number associated with your cocktail listed above."
+            cocktail_select = gets.chomp.to_i
+            # Scraper.new.second_scrape(Cocktail.all[cocktail_select-1].second_url) #user selects a cocktail and that info is ran 
+            # binding.pry
+            instances << Cocktail.all[cocktail_select-1]
+            Cocktail.print_cocktails(instances)
+            # Cocktail.print_details(instances)
+            #step 1, Chris vidoe on combining second scrape into first
+            #step 2, 
+        elsif user_input == 2
+            Cocktail.print_shaken_cocktails("shaken")
+            puts "Enter the number associated with your cocktail listed above for more details."
+            cocktail_select = gets.chomp.to_i
+            instances << Cocktail.all[cocktail_select-1]
+            Cocktail.print_cocktails(instances)
+        else
+           puts "Sorry, I don't recognzie that entry. Please try again:"
+
+
+
+            # end
         end
     end
-# binding.pry
 end
-=end
+
+
+#   def what_next
+#     puts "Are you done? Type 'exit' to exit or hit any key to see more events."
+#     user_input = gets.strip
+#   end 
+  
+#   def goodbye
+#     puts "Cheers to the Good Life!"
+#   end 

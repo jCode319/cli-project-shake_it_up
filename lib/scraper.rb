@@ -17,10 +17,13 @@ class Scraper
             cocktail_name = cocktail.css('.card__content')[0].text.strip
             technique = cocktail.css('.card__content')[0].children[1].attr('data-tax-tag')
             second_url = cocktail.css('a')[0].attr('href')
-                    binding.pry
+
+            # description_and_ingredients_hash = self.second_scrape(second_url)
+
             technique_instance = Technique.find_or_create_by_name(technique)
-binding.pry
+
             cocktail = Cocktail.new(cocktail_name, technique_instance, second_url)
+
         end
     end
     
@@ -30,11 +33,12 @@ binding.pry
         details = second_parsed_cocktails.css('.chop-content')
         description = details.css(".text-passage")[0].text.strip
         ingredient_list = details.css(".ingredient-list")[0].children.text.tr("\n"," ")
-        return {description: description, ingredient: ingredient_list}
+        # return {description: description, ingredient: ingredient_list}
+
     end
 end
 
-
+#add second scrape to 1st
 
         #    technique -< cocktails
 
