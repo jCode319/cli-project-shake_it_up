@@ -27,36 +27,53 @@ class CLI
         puts "Shaking things up ...this might take a second!"
         sleep(1)
         Scraper.new.first_scrape
+        #binding.pry
         puts ""
         puts "Done!"
         puts ""
 
-        puts "Please choose a cocktail making method?\nEnter 1 to view All Cocktails or Enter 2 to view all Shaken Cocktails\nEnter 3 to exit" 
+        puts "Please choose a cocktail making method?\nEnter 1 to view All Cocktails or Enter 2 to view all Cocktail Techniques\nEnter 3 to exit" 
         puts ""
         user_input = gets.chomp.to_i
         instances = []
         if user_input == 1
             puts ""
             Cocktail.print_all_cocktails
-            puts "to view more info and ingredients, Enter the number associated with your cocktail listed above."
-            cocktail_select = gets.chomp.to_i
-            # Scraper.new.second_scrape(Cocktail.all[cocktail_select-1].second_url) #user selects a cocktail and that info is ran 
-            # binding.pry
-            instances << Cocktail.all[cocktail_select-1]
-            Cocktail.print_cocktails(instances)
-            # Cocktail.print_details(instances)
-            #step 1, Chris vidoe on combining second scrape into first
-            #step 2, 
-        elsif user_input == 2
-            Cocktail.print_shaken_cocktails("shaken")
             puts "Enter the number associated with your cocktail listed above for more details."
             cocktail_select = gets.chomp.to_i
+            # second_scrape_instance = Cocktail.all[cocktail_select-1].second_url #user selects a cocktail and that info is ran 
+            # binding.pry
             instances << Cocktail.all[cocktail_select-1]
-            Cocktail.print_cocktails(instances)
+            Cocktail.print_single_cocktail(instances)
+
+            # Cocktail.print_details(instances) 
+        elsif user_input == 2
+            #binding.pry
+                    Technique.all.each_with_index do |tech_instance, index|
+                    puts ""
+                    puts "#{index+1}. #{tech_instance.name}"
+                    end
+            puts "Please choose a technique."
+            technique_selection = gets.chomp.to_i - 1
+
+            cocktails_with_matching_technique = Technique.all[technique_selection].cocktail_by_technique
+            Cocktail.print_shaken_cocktails(cocktails_with_matching_technique)
+
+            puts "Enter the number associated with your cocktail listed above for more details."
+            cocktail_selection = gets.chomp.to_i - 1
+
+            instances << cocktails_with_matching_technique[cocktail_selection]
+            #binding.pry
+            Cocktail.print_single_cocktail(instances)
+            
+            #binding.pry
+            # Cocktail.print_shaken_cocktails("shaken")
+            
+            # cocktail_select = gets.chomp.to_i
+            # instances << Cocktail.all[cocktail_select-1]
+            # Cocktail.print_cocktails(instances)
         else
            puts "Sorry, I don't recognzie that entry. Please try again:"
-
-
 
             # end
         end
