@@ -13,15 +13,10 @@ class Technique
         @@all << self
     end
 
-    def cocktail_by_technique #doesn't pick up cocktail...needs to shovel in the cocktails after they are made
+    def cocktail_by_technique
         Cocktail.all.select {|cocktail| cocktail.technique == self}   
     end
 
-    # def self.cocktail_by_technique #doesn't pick up cocktail...needs to shovel in the cocktails after they are made
-    #     Technique.all.select {|cocktail| cocktail.technique == self}   
-    # end #unmodified
-
-    # binding.pry
 
     def self.find_or_create_by_name(name) 
         found_technique = self.all.find { |technique| technique.name == name }
