@@ -1,5 +1,5 @@
 # phase-1-project
-## Short Descriptino:
+## Short Description:
 This is a Ruby CLI application that will help you look-up cocktail recipes. Upon running the application, it communicates with https://www.liquor.com/cocktails-shaken-4779409 and allows the user to select "all cocktails" or "cocktails by technique" and then recieve the description of the cocktail along with it's coresponding ingredients. The application will restart after the detailed description has been read.
 
 ## Downloading instructions: 
@@ -14,4 +14,3 @@ open-uri, Standard Library to be required
 
 ## Links
 video demo: https://drive.google.com/file/d/1O5f2sbEV-nUMEMePMlmQkdbiZjHIheGL/view?usp=sharing
-blog post: 
