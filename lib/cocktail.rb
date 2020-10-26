@@ -19,20 +19,16 @@ class Cocktail
 
     def self.print_all_cocktails
         @@all.each_with_index do |cocktail, index|
-        # puts "^" * 32
         puts "#{index+1}. #{cocktail.name}"
-        # puts ""
-        # sleep(0.01)
+        sleep(0.02)
         end
     end
 
      def self.print_shaken_cocktails(technique)
         self.all.each_with_index do |cocktail, index|
             cocktail.technique == technique
-        # puts "^" * 32
         puts "#{index+1}. #{cocktail.name}"
-        # puts ""
-        # sleep(0.01)
+        sleep(0.02)
         end
     end
 
