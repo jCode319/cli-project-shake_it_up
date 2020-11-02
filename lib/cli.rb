@@ -36,13 +36,13 @@ class CLI
 
         if user_input == 1
             puts ""
-            Cocktail.print_all_cocktails
+            print_all_cocktails
                 
                     puts "To view more info, enter the number that matches the cocktail you would like to see."
                     cocktail_select = gets.strip.to_i
-                    instances << Cocktail.all[cocktail_select-1]
+                    single_cocktail = Cocktail.all[cocktail_select-1]
 
-            Cocktail.print_single_cocktail(instances)
+            print_single_cocktail(single_cocktail)
                 what_next
 
         elsif user_input == 2
@@ -58,22 +58,23 @@ class CLI
                 technique_selection = gets.chomp.to_i - 1
                 cocktails_with_matching_technique = Technique.all[technique_selection].cocktail_by_technique
             
-            Cocktail.print_shaken_cocktails(cocktails_with_matching_technique)
-            
+            print_shaken_cocktails(cocktails_with_matching_technique)
+
                 puts ""
                 puts "To view more info, enter the number that matches the cocktail you would like to see."
                 print prompt
             
                 cocktail_selection = gets.chomp.to_i - 1
-                instances << cocktails_with_matching_technique[cocktail_selection]
-            
-            Cocktail.print_single_cocktail(instances)
+                single_shaken_cocktail = cocktails_with_matching_technique[cocktail_selection]
+ 
+            print_single_shaken_cocktail(single_shaken_cocktail)
                 what_next
 
         elsif user_input == 3
                     goodbye
         else
             puts "Sorry, I don't recognzie that entry. Please try again:"
+            menu
         end
     end
   
@@ -99,5 +100,43 @@ class CLI
         puts "Cheers to the Good Life!"
         puts ""
     end 
+        def print_all_cocktails
+                Cocktail.all.each_with_index do |cocktail, index|
+                puts "#{index+1}. #{cocktail.name}"
+                sleep(0.02)
+                end
+            end
 
+            def print_shaken_cocktails(technique)
+                Cocktail.all.each_with_index do |cocktail, index|
+                    cocktail.technique == technique
+                puts "#{index+1}. #{cocktail.name}"
+                sleep(0.02)
+                end
+            end
+
+            def print_single_cocktail(single_cocktail)
+                # binding.pry
+                puts ""
+                puts "^" * 50
+                puts "#{single_cocktail.name}" #calling an instance method on the "cocktail" class (attribute reader)
+                puts ""
+                puts "Description:\n#{single_cocktail.description}"
+                puts ""
+                puts "Ingredients:\n#{single_cocktail.ingredient_list}"
+                puts ""
+            end
+
+            def print_single_shaken_cocktail(single_shaken_cocktail)
+                puts ""
+                puts "^" * 50
+                puts "#{single_shaken_cocktail.name}" #calling an instance method on the "cocktail" class (attribute reader)
+                puts ""
+                puts "Description:\n#{single_shaken_cocktail.description}"
+                puts ""
+                puts "Ingredients:\n#{single_shaken_cocktail.ingredient_list}"
+                puts ""
+            end
 end
+
+

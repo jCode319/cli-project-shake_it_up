@@ -17,32 +17,5 @@ class Cocktail
         @@all << self
     end
 
-    def self.print_all_cocktails
-        @@all.each_with_index do |cocktail, index|
-        puts "#{index+1}. #{cocktail.name}"
-        sleep(0.02)
-        end
-    end
-
-     def self.print_shaken_cocktails(technique)
-        self.all.each_with_index do |cocktail, index|
-            cocktail.technique == technique
-        puts "#{index+1}. #{cocktail.name}"
-        sleep(0.02)
-        end
-    end
-
-    def self.print_single_cocktail(instances)
-        instances.each do |cocktail|
-        puts ""
-        puts "^" * 50
-        puts "#{cocktail.name}" #calling an instance method on the "cocktail" class (attribute reader)
-        puts ""
-        puts "Description:\n#{cocktail.description}"
-        puts ""
-        puts "Ingredients:\n#{cocktail.ingredient_list}"
-        puts ""
-        
-        end
-    end
+    
 end
