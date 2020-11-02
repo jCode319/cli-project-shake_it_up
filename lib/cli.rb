@@ -92,6 +92,7 @@ class CLI
             goodbye
         else
             "Sorry, I don't recognzie that entry. Please try again:"
+            what_next
         end
     end 
 
